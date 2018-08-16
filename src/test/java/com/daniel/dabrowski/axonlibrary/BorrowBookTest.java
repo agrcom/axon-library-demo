@@ -15,37 +15,38 @@ public class BorrowBookTest {
     private FixtureConfiguration<Book> fixture;
 
     @Before
-    public void setUp() throws Exception{
+    public void setUp() throws Exception {
         fixture = new AggregateTestFixture<>(Book.class);
     }
 
     @Test
-    public void addBook(){
+    public void addBook() {
         fixture.givenNoPriorActivity()
                 .when(new AddBookCommand("11", "Test Book"))
                 .expectEvents(new AddBookEvent("11", "Test Book"));
     }
 
     @Test
-    public void borrowBook(){
+    public void borrowBook() {
         fixture.given(new AddBookEvent("1234", "Test"))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectEvents(new BorrowBookEvent("1234", "Test", 0));
     }
 
     @Test @Ignore
-    public void borrowBookAndCheckBalance(){
-        fixture.given(new AddBookEvent("1234", "Test"))
-                .andGiven(new AddBookEvent("12345", "Test Book"))
+    public void borrowBookAndCheckBalance() {
+        fixture.given(new AddBookEvent("1234", "Test"),
+                new AddBookEvent("1234", "TestBook"))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectEvents(new BorrowBookEvent("1234", "Test", 1));
     }
 
     @Test
-    public void borrowNonExistingBook() {
-        fixture.givenNoPriorActivity()
+    public void borrowBookWhenLibraryIsEmpty() {
+        fixture.given(new AddBookEvent("1234", "Test"),
+                new BorrowBookEvent("1234", "Test", 0))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectNoEvents()
                 .expectException(LibraryIsEmptyExpection.class);
     }
-    }
+}
