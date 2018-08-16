@@ -10,5 +10,4 @@ public class BorrowBookCommand {
     @TargetAggregateIdentifier
     public String id;
     public String bookName;
-
 }

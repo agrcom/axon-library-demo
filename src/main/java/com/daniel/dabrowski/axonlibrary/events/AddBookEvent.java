@@ -6,6 +6,7 @@ import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
 @Value @AllArgsConstructor
 public class AddBookEvent {
+
     @TargetAggregateIdentifier
     public String id;
     public String bookName;

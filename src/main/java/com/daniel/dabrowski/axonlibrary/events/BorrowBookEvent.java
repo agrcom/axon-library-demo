@@ -7,4 +7,5 @@ import lombok.Data;
 public class BorrowBookEvent {
     public String id;
     public String bookName;
+    public int balance;
 }
