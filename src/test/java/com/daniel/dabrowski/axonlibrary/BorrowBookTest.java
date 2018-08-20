@@ -12,18 +12,18 @@ import org.junit.Test;
 
 public class BorrowBookTest {
 
-    private FixtureConfiguration<Book> fixture;
+    private FixtureConfiguration<BookAggregate> fixture;
 
     @Before
     public void setUp() throws Exception {
-        fixture = new AggregateTestFixture<>(Book.class);
+        fixture = new AggregateTestFixture<>(BookAggregate.class);
     }
 
     @Test
     public void addBook() {
         fixture.givenNoPriorActivity()
-                .when(new AddBookCommand("11", "Test Book"))
-                .expectEvents(new AddBookEvent("11", "Test Book"));
+                .when(new AddBookCommand("11", "Test BookAggregate"))
+                .expectEvents(new AddBookEvent("11", "Test BookAggregate"));
     }
 
     @Test
@@ -49,4 +49,11 @@ public class BorrowBookTest {
                 .expectNoEvents()
                 .expectException(LibraryIsEmptyExpection.class);
     }
+    //TODO
+    /**
+     * BookProcessor - Listener/component
+     * EventHandler BookBorrowed
+     *
+     * check - QueryHandler 
+     */
 }
