@@ -2,12 +2,11 @@ package com.daniel.dabrowski.axonlibrary;
 
 import com.daniel.dabrowski.axonlibrary.commands.AddBookCommand;
 import com.daniel.dabrowski.axonlibrary.commands.BorrowBookCommand;
-import com.daniel.dabrowski.axonlibrary.events.AddBookEvent;
-import com.daniel.dabrowski.axonlibrary.events.BorrowBookEvent;
+import com.daniel.dabrowski.axonlibrary.events.AddedBookEvent;
+import com.daniel.dabrowski.axonlibrary.events.BookBorrowedEvent;
 import org.axonframework.test.aggregate.AggregateTestFixture;
 import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class BorrowBookTest {
@@ -23,34 +22,27 @@ public class BorrowBookTest {
     public void addBook() {
         fixture.givenNoPriorActivity()
                 .when(new AddBookCommand("11", "Test BookAggregate"))
-                .expectEvents(new AddBookEvent("11", "Test BookAggregate"));
+                .expectEvents(new AddedBookEvent("11", "Test BookAggregate"));
     }
 
     @Test
     public void borrowBook() {
-        fixture.given(new AddBookEvent("1234", "Test"))
+        fixture.given(new AddedBookEvent("1234", "Test"))
                 .when(new BorrowBookCommand("1234", "Test"))
-                .expectEvents(new BorrowBookEvent("1234", "Test", 0));
-    }
-
-    @Test @Ignore
-    public void borrowBookAndCheckBalance() {
-        fixture.given(new AddBookEvent("1234", "Test"),
-                new AddBookEvent("1234", "TestBook"))
-                .when(new BorrowBookCommand("1234", "Test"))
-                .expectEvents(new BorrowBookEvent("1234", "Test", 1));
+                .expectEvents(new BookBorrowedEvent("1234", "Test", 0));
     }
 
     @Test
     public void borrowBookWhenLibraryIsEmpty() {
-        fixture.given(new AddBookEvent("1234", "Test"),
-                new BorrowBookEvent("1234", "Test", 0))
+        fixture.given(new AddedBookEvent("1234", "Test"),
+                new BookBorrowedEvent("1234", "Test", 0))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectNoEvents()
                 .expectException(LibraryIsEmptyExpection.class);
     }
-    //TODO
+
     /**
+     * //TODO
      * BookProcessor - Listener/component
      * EventHandler BookBorrowed
      *
