@@ -22,7 +22,7 @@ public class BookAggregate {
 
     @CommandHandler
     public BookAggregate(AddBookCommand command) {
-        apply(new AddedBookEvent(command.getId(), command.getBookName()));
+        apply(new AddedBookEvent(command.getId(), command.getBookName(), id, bookName));
     }
 
     @CommandHandler

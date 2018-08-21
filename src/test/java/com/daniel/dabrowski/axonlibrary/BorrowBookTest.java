@@ -22,19 +22,19 @@ public class BorrowBookTest {
     public void addBook() {
         fixture.givenNoPriorActivity()
                 .when(new AddBookCommand("11", "Test BookAggregate"))
-                .expectEvents(new AddedBookEvent("11", "Test BookAggregate"));
+                .expectEvents(new AddedBookEvent("11", "Test BookAggregate", id, bookName));
     }
 
     @Test
     public void borrowBook() {
-        fixture.given(new AddedBookEvent("1234", "Test"))
+        fixture.given(new AddedBookEvent("1234", "Test", id, bookName))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectEvents(new BookBorrowedEvent("1234", "Test", 0));
     }
 
     @Test
     public void borrowBookWhenLibraryIsEmpty() {
-        fixture.given(new AddedBookEvent("1234", "Test"),
+        fixture.given(new AddedBookEvent("1234", "Test", id, bookName),
                 new BookBorrowedEvent("1234", "Test", 0))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectNoEvents()
