@@ -13,4 +13,12 @@ public class BookBorrowedEvent extends LibraryBalanceUpdateEvent{
     public BookBorrowedEvent(String bookId, int balance) {
         super(bookId, balance);
     }
+
+    public BookBorrowedEvent(String id, String bookName, int balance) {
+        this.id = id;
+        this.bookName = bookName;
+        this.balance = balance;
+    }
+
+
 }

@@ -12,8 +12,13 @@ public class AddedBookEvent extends LibraryBalanceUpdateEvent{
     public String id;
     public String bookName;
 
-    public AddedBookEvent(String bookId, int balance, String id, String bookName) {
+    public AddedBookEvent(String bookId, int balance) {
         super(bookId, balance);
+        this.id = id;
+        this.bookName = bookName;
+    }
+
+    public AddedBookEvent(String id, String bookName) {
         this.id = id;
         this.bookName = bookName;
     }

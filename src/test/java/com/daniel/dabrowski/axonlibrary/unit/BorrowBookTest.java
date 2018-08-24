@@ -1,5 +1,7 @@
-package com.daniel.dabrowski.axonlibrary;
+package com.daniel.dabrowski.axonlibrary.unit;
 
+import com.daniel.dabrowski.axonlibrary.BookAggregate;
+import com.daniel.dabrowski.axonlibrary.LibraryIsEmptyExpection;
 import com.daniel.dabrowski.axonlibrary.commands.AddBookCommand;
 import com.daniel.dabrowski.axonlibrary.commands.BorrowBookCommand;
 import com.daniel.dabrowski.axonlibrary.events.AddedBookEvent;
@@ -22,19 +24,19 @@ public class BorrowBookTest {
     public void addBook() {
         fixture.givenNoPriorActivity()
                 .when(new AddBookCommand("11", "Test BookAggregate"))
-                .expectEvents(new AddedBookEvent("11", "Test BookAggregate", id, bookName));
+                .expectEvents(new AddedBookEvent("11", "Test BookAggregate"));
     }
 
     @Test
     public void borrowBook() {
-        fixture.given(new AddedBookEvent("1234", "Test", id, bookName))
+        fixture.given(new AddedBookEvent("1234", "Test"))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectEvents(new BookBorrowedEvent("1234", "Test", 0));
     }
 
     @Test
     public void borrowBookWhenLibraryIsEmpty() {
-        fixture.given(new AddedBookEvent("1234", "Test", id, bookName),
+        fixture.given(new AddedBookEvent("1234", "Test"),
                 new BookBorrowedEvent("1234", "Test", 0))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectNoEvents()
