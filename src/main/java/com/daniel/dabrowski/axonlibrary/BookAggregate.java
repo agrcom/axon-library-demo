@@ -1,9 +1,9 @@
 package com.daniel.dabrowski.axonlibrary;
 
-import com.daniel.dabrowski.axonlibrary.commands.AddBookCommand;
-import com.daniel.dabrowski.axonlibrary.commands.BorrowBookCommand;
-import com.daniel.dabrowski.axonlibrary.events.AddedBookEvent;
-import com.daniel.dabrowski.axonlibrary.events.BookBorrowedEvent;
+import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddBookCommand;
+import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BorrowBookCommand;
+import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddedBookEvent;
+import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BookBorrowedEvent;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
@@ -45,4 +45,6 @@ public class BookAggregate {
         this.balance = this.balance - 1;
         event.setBalance(this.balance);
     }
+
+    //TODO: add handlers for return book
 }

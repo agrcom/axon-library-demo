@@ -1,4 +1,4 @@
-package com.daniel.dabrowski.axonlibrary.events;
+package com.daniel.dabrowski.axonlibrary.libraryBalanceModule;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

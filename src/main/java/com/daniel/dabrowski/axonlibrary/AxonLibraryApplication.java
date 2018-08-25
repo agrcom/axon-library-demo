@@ -1,6 +1,6 @@
 package com.daniel.dabrowski.axonlibrary;
 
-import com.daniel.dabrowski.axonlibrary.commands.AddBookCommand;
+import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddBookCommand;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.GenericCommandMessage;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;

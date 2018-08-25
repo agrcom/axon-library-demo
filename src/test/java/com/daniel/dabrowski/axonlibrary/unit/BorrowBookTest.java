@@ -2,10 +2,10 @@ package com.daniel.dabrowski.axonlibrary.unit;
 
 import com.daniel.dabrowski.axonlibrary.BookAggregate;
 import com.daniel.dabrowski.axonlibrary.LibraryIsEmptyExpection;
-import com.daniel.dabrowski.axonlibrary.commands.AddBookCommand;
-import com.daniel.dabrowski.axonlibrary.commands.BorrowBookCommand;
-import com.daniel.dabrowski.axonlibrary.events.AddedBookEvent;
-import com.daniel.dabrowski.axonlibrary.events.BookBorrowedEvent;
+import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddBookCommand;
+import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BorrowBookCommand;
+import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddedBookEvent;
+import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BookBorrowedEvent;
 import org.axonframework.test.aggregate.AggregateTestFixture;
 import org.axonframework.test.aggregate.FixtureConfiguration;
 import org.junit.Before;

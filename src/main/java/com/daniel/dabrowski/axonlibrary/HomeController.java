@@ -1,6 +1,6 @@
-package com.daniel.dabrowski.axonlibrary.api;
+package com.daniel.dabrowski.axonlibrary;
 
-import com.daniel.dabrowski.axonlibrary.commands.AddBookCommand;
+import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddBookCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

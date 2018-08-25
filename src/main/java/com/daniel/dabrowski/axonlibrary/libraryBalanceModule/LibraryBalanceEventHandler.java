@@ -1,6 +1,5 @@
 package com.daniel.dabrowski.axonlibrary.libraryBalanceModule;
 
-import com.daniel.dabrowski.axonlibrary.events.LibraryBalanceUpdateEvent;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 

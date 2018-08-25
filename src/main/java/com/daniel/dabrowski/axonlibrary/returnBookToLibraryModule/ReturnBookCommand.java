@@ -1,11 +1,11 @@
-package com.daniel.dabrowski.axonlibrary.commands;
+package com.daniel.dabrowski.axonlibrary.returnBookToLibraryModule;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Data;
 import org.axonframework.commandhandling.TargetAggregateIdentifier;
 
-@Data @AllArgsConstructor
-public class BorrowBookCommand {
+@Data
+public class ReturnBookCommand {
 
     @TargetAggregateIdentifier
     public String id;

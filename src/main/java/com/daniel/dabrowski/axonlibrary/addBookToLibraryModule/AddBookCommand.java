@@ -1,4 +1,4 @@
-package com.daniel.dabrowski.axonlibrary.commands;
+package com.daniel.dabrowski.axonlibrary.addBookToLibraryModule;
 
 import lombok.AllArgsConstructor;
 import lombok.Value;
