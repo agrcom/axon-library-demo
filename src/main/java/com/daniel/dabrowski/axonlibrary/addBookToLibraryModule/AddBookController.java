@@ -18,6 +18,7 @@ public class AddBookController {
     public void addBookToShelf(@RequestBody AddBookCommand book){
         commandGateway.send(book);
 
-        System.out.println("Added Book: " + book.getBookName());
+        System.out.println("Added Book: .." +
+                "" + book.getBookName());
     }
 }
