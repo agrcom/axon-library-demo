@@ -8,8 +8,4 @@ import lombok.NoArgsConstructor;
 public abstract class LibraryBalanceUpdateEvent {
     public String bookId;
     public int balance;
-
-
-    public LibraryBalanceUpdateEvent() {
-    }
 }

@@ -47,7 +47,5 @@ public class BorrowBookTest {
      * //TODO
      * BookProcessor - Listener/component
      * EventHandler BookBorrowed
-     *
-     * check - QueryHandler 
      */
 }

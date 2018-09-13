@@ -7,6 +7,7 @@ import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BookBorrowed
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
+import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.spring.stereotype.Aggregate;
 
@@ -20,6 +21,8 @@ public class BookAggregate {
     private String bookId;
     private int balance;
 
+    private boolean isBorrowed;
+
     @CommandHandler
     public BookAggregate(AddBookCommand command) {
         apply(new AddedBookEvent(command.getId(), command.getBookName()));
@@ -30,21 +33,22 @@ public class BookAggregate {
         if(balance>0) {
             apply(new BookBorrowedEvent(bookId, command.getBookName(), balance));
         }else {
-            throw new LibraryIsEmptyExpection();
+            throw new LibraryIsEmptyExpection("error");
         }
     }
 
     @EventSourcingHandler
     public void on(AddedBookEvent event){
+        this.isBorrowed = false;
         this.bookId = event.getId();
         this.balance =+ 1;
     }
 
-    @EventSourcingHandler
+    @EventHandler
     public void on(BookBorrowedEvent event){
+        this.isBorrowed = true;
         this.balance = this.balance - 1;
         event.setBalance(this.balance);
     }
-
-    //TODO: add handlers for return book
 }
+//TODO add command handler for return

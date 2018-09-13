@@ -2,7 +2,7 @@ package com.daniel.dabrowski.axonlibrary.borrowingHistoryModule;
 
 import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddedBookEvent;
 import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BookBorrowedEvent;
-import com.daniel.dabrowski.axonlibrary.returnBookToLibraryModule.ReturnBookEvent;
+import com.daniel.dabrowski.axonlibrary.returnBookToLibraryModule.ReturnedBookEvent;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Component;
 
@@ -24,7 +24,7 @@ public class BorrowingHistoryEventHandler {
     }
 
     @EventHandler
-    public void on(ReturnBookEvent returnBookEvent){
-        repository.add(new BorrowingHistoryModel(returnBookEvent.getId(), returnBookEvent.getBookName(), "Returned"));
+    public void on(ReturnedBookEvent returnedBookEvent){
+        repository.add(new BorrowingHistoryModel(returnedBookEvent.getId(), returnedBookEvent.getBookName(), "Returned"));
     }
 }
