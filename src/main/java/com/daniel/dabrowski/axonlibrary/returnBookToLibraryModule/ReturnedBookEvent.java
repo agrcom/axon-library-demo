@@ -6,6 +6,6 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class ReturnedBookEvent {
-    public String id;
-    public String bookName;
+    private String id;
+    private String bookName;
 }

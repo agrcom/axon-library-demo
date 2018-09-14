@@ -4,6 +4,8 @@ import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddBookCommand;
 import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BorrowBookCommand;
 import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddedBookEvent;
 import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BookBorrowedEvent;
+import com.daniel.dabrowski.axonlibrary.returnBookToLibraryModule.ReturnBookCommand;
+import com.daniel.dabrowski.axonlibrary.returnBookToLibraryModule.ReturnedBookEvent;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.commandhandling.model.AggregateIdentifier;
@@ -35,6 +37,11 @@ public class BookAggregate {
         }else {
             throw new LibraryIsEmptyExpection("error");
         }
+    }
+
+    @CommandHandler
+    public void returnBook(ReturnBookCommand command){
+        apply(new ReturnedBookEvent(command.getId(), command.getBookName()));
     }
 
     @EventSourcingHandler
