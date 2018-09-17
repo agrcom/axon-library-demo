@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor @Data
 public abstract class LibraryBalanceUpdateEvent {
     public String bookId;
-    public int balance;
+
 }

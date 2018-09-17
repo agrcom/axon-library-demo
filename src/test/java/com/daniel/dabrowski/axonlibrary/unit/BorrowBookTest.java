@@ -1,7 +1,7 @@
 package com.daniel.dabrowski.axonlibrary.unit;
 
 import com.daniel.dabrowski.axonlibrary.BookAggregate;
-import com.daniel.dabrowski.axonlibrary.LibraryIsEmptyExpection;
+import com.daniel.dabrowski.axonlibrary.BookIsAlreadyBorrowedExpection;
 import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddBookCommand;
 import com.daniel.dabrowski.axonlibrary.borrowBookFromLibraryModule.BorrowBookCommand;
 import com.daniel.dabrowski.axonlibrary.addBookToLibraryModule.AddedBookEvent;
@@ -40,8 +40,9 @@ public class BorrowBookTest {
                 new BookBorrowedEvent("1234", "Test", 0))
                 .when(new BorrowBookCommand("1234", "Test"))
                 .expectNoEvents()
-                .expectException(LibraryIsEmptyExpection.class);
+                .expectException(BookIsAlreadyBorrowedExpection.class);
     }
+
 
     /**
      * //TODO

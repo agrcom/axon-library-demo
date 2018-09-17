@@ -21,7 +21,6 @@ public class BookAggregate {
 
     @AggregateIdentifier
     private String bookId;
-    private int balance;
 
     private boolean isBorrowed;
 
@@ -31,31 +30,32 @@ public class BookAggregate {
     }
 
     @CommandHandler
-    public void handle(BorrowBookCommand command) throws LibraryIsEmptyExpection {
-        if(balance>0) {
-            apply(new BookBorrowedEvent(bookId, command.getBookName(), balance));
-        }else {
-            throw new LibraryIsEmptyExpection("error");
+    public void handle(BorrowBookCommand command) throws BookIsAlreadyBorrowedExpection {
+        if (isBorrowed) {
+            throw new BookIsAlreadyBorrowedExpection("This Book is Already Borrowed");
+        } else {
+            apply(new BookBorrowedEvent(bookId, command.getBookName()));
         }
     }
 
     @CommandHandler
-    public void returnBook(ReturnBookCommand command){
+    public void returnBook(ReturnBookCommand command) {
         apply(new ReturnedBookEvent(command.getId(), command.getBookName()));
     }
 
     @EventSourcingHandler
-    public void on(AddedBookEvent event){
+    public void on(AddedBookEvent event) {
         this.isBorrowed = false;
         this.bookId = event.getId();
-        this.balance =+ 1;
     }
 
     @EventHandler
-    public void on(BookBorrowedEvent event){
+    public void on(BookBorrowedEvent event) {
         this.isBorrowed = true;
-        this.balance = this.balance - 1;
-        event.setBalance(this.balance);
+    }
+
+    @EventHandler
+    public void on(ReturnedBookEvent event) {
+        this.isBorrowed = false;
     }
 }
-//TODO add command handler for return

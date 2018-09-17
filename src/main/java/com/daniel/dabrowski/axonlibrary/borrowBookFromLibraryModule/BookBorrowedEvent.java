@@ -9,16 +9,14 @@ import lombok.EqualsAndHashCode;
 public class BookBorrowedEvent extends LibraryBalanceUpdateEvent {
     public String id;
     public String bookName;
-    public int balance;
 
-    public BookBorrowedEvent(String bookId, int balance) {
-        super(bookId, balance);
+    public BookBorrowedEvent(String bookId) {
+        super(bookId);
     }
 
-    public BookBorrowedEvent(String id, String bookName, int balance) {
+    public BookBorrowedEvent(String id, String bookName) {
         this.id = id;
         this.bookName = bookName;
-        this.balance = balance;
     }
 
 

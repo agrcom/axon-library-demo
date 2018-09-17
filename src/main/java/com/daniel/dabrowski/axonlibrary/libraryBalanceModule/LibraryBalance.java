@@ -10,5 +10,4 @@ public class LibraryBalance {
 
     @EntityId
     public String id;
-    public int balance;
 }
